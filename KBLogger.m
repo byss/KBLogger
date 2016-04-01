@@ -26,8 +26,6 @@
 
 #import "KBLogger.h"
 
-#import "KBAPISupportLogging_Protected.h"
-
 static id <KBLogger> KBLoggerInstance = nil;
 
 static char const *const logLevelString (KBLogLevel const logLevel);
@@ -39,7 +37,6 @@ static char const *const logLevelString (KBLogLevel const logLevel);
 + (void) initialize {
 	if (self == [KBLogger class]) {
 		KBLoggerInstance = [KBLogger new];
-		KBLOGI (@"%@ initialized", self);
 	}
 }
 
