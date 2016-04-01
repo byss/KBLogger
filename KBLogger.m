@@ -56,7 +56,7 @@ static char const *const logLevelString (KBLogLevel const logLevel);
 	return self;
 }
 
-- (void)logWithLevel:(KBLogLevel)level file:(const char *)file line:(int)line function:(const char *)function message:(NSString *)fmt, ... {
+- (void)logWithLevel:(KBLogLevel)level  module: (char const *) module file:(const char *)file line:(int)line function:(const char *)function message:(NSString *)fmt, ... {
 	if (level > self.logLevel) {
 		return;
 	}
@@ -66,7 +66,11 @@ static char const *const logLevelString (KBLogLevel const logLevel);
 	NSString *message = [[NSString alloc] initWithFormat:fmt arguments:args];
 	va_end (args);
 	
-	NSLog (@"%s%s (%d): %@", logLevelString (level), function, line, message);
+	if (module) {
+		NSLog (@"%s: %s%s (%d): %@", module, logLevelString (level), function, line, message);
+	} else {
+		NSLog (@"%s%s (%d): %@", logLevelString (level), function, line, message);
+	}
 }
 
 @end

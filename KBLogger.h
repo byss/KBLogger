@@ -39,7 +39,7 @@ typedef NS_ENUM (NSInteger, KBLogLevel) {
 @required
 @property (nonatomic, assign) KBLogLevel logLevel;
 
-- (void) logWithLevel: (KBLogLevel) level file: (char const *_Nonnull) file line: (int) line function: (char const *_Nonnull) function message: (NSString *_Nullable) fmt, ...;
+- (void) logWithLevel: (KBLogLevel) level module: (char const *_Nullable) module file: (char const *_Nonnull) file line: (int) line function: (char const *_Nonnull) function message: (NSString *_Nullable) fmt, ...;
 
 @end
 
@@ -50,8 +50,8 @@ typedef NS_ENUM (NSInteger, KBLogLevel) {
 
 @end
 
-#	define KBLOG_MACRO(lvl, fmt, args...) ([[KBLogger sharedLogger] logWithLevel:lvl file:__FILE__ line:__LINE__ function:__PRETTY_FUNCTION__ message:fmt, ##args])
-#	define KBLOGE(fmt, args...) KBLOG_MACRO (KBLogLevelError, fmt, ##args)
-#	define KBLOGW(fmt, args...) KBLOG_MACRO (KBLogLevelWarning, fmt, ##args)
-#	define KBLOGI(fmt, args...) KBLOG_MACRO (KBLogLevelInfo, fmt, ##args)
-#	define KBLOGD(fmt, args...) KBLOG_MACRO (KBLogLevelDebug, fmt, ##args)
+#	define KBLOG_MACRO(lvl, mod, fmt, args...) ([[KBLogger sharedLogger] logWithLevel:lvl module:mod file:__FILE__ line:__LINE__ function:__PRETTY_FUNCTION__ message:fmt, ##args])
+#	define KBLOGE(fmt, args...) KBLOG_MACRO (KBLogLevelError, NULL, fmt, ##args)
+#	define KBLOGW(fmt, args...) KBLOG_MACRO (KBLogLevelWarning, NULL, fmt, ##args)
+#	define KBLOGI(fmt, args...) KBLOG_MACRO (KBLogLevelInfo, NULL, fmt, ##args)
+#	define KBLOGD(fmt, args...) KBLOG_MACRO (KBLogLevelDebug, NULL, fmt, ##args)
