@@ -9,7 +9,7 @@ Pod::Spec.new do |spec|
 	spec.requires_arc         = true
 	spec.source_files         = 'KBLogger.{h,m}'
 
-	spec.ios.deployment_target = '2.0'
-	spec.osx.deployment_target = '10.0'
+	spec.ios.deployment_target     = '4.0'
+	spec.osx.deployment_target     = '10.6'
 	spec.watchos.deployment_target = '2.0'
 end
