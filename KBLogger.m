@@ -67,7 +67,7 @@ static char const *const logLevelString (KBLogLevel const logLevel);
 	va_end (args);
 	
 	if (module) {
-		NSLog (@"%s: %s%s (%d): %@", module, logLevelString (level), function, line, message);
+		NSLog (@"[%s] %s%s (%d): %@", module, logLevelString (level), function, line, message);
 	} else {
 		NSLog (@"%s%s (%d): %@", logLevelString (level), function, line, message);
 	}
